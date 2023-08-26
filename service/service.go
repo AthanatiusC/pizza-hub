@@ -17,7 +17,9 @@ type Service struct {
 }
 
 func NewService(repository *repository.Repository) *Service {
+	ctx := context.WithValue(context.Background(), model.RequestIDKey, "Repository")
 	rand.Seed(time.Now().UnixNano()) // initialize global pseudo random generator
+	logger.InfoContext(ctx, "Service initialized")
 	return &Service{
 		Repository: repository,
 	}

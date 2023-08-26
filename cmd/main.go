@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/AthanatiusC/pizza-hub/controller"
+	"github.com/AthanatiusC/pizza-hub/helper/logger"
 	"github.com/AthanatiusC/pizza-hub/repository"
 	"github.com/AthanatiusC/pizza-hub/service"
 	"github.com/AthanatiusC/pizza-hub/service/pizzahub"
@@ -33,7 +34,8 @@ func main() {
 	pizzaService := pizzahub.NewBakeryService(repository)
 	go pizzaService.StartPizzaFactory()
 
-	err := http.ListenAndServe(":8080", nil)
+	logger.Info("Server started at port 8080")
+	err := http.ListenAndServe("0.0.0.0:8080", nil)
 	if err != nil {
 		panic(err)
 	}

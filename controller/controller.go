@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/AthanatiusC/pizza-hub/helper"
+	"github.com/AthanatiusC/pizza-hub/helper/logger"
 	"github.com/AthanatiusC/pizza-hub/helper/response"
 	"github.com/AthanatiusC/pizza-hub/model"
 	"github.com/AthanatiusC/pizza-hub/service"
@@ -16,6 +17,8 @@ type Controller struct {
 }
 
 func NewController(service *service.Service) *Controller {
+	ctx := context.WithValue(context.Background(), model.RequestIDKey, "Controller")
+	logger.InfoContext(ctx, "Controller initialized")
 	return &Controller{
 		Service: service,
 	}

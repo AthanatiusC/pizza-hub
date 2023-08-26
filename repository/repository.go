@@ -1,11 +1,13 @@
 package repository
 
 import (
+	"context"
 	"sort"
 	"sync"
 	"time"
 
 	"github.com/AthanatiusC/pizza-hub/helper"
+	"github.com/AthanatiusC/pizza-hub/helper/logger"
 	"github.com/AthanatiusC/pizza-hub/model"
 )
 
@@ -17,6 +19,7 @@ type Repository struct {
 }
 
 func NewRepository() *Repository {
+	ctx := context.WithValue(context.Background(), model.RequestIDKey, "Repository")
 	menus := []model.Menu{
 		{
 			ID:       1,
@@ -37,6 +40,7 @@ func NewRepository() *Repository {
 		},
 	}
 
+	logger.InfoContext(ctx, "Repository initialized")
 	return &Repository{
 		menus:  menus,
 		chefs:  chefs,
