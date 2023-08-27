@@ -18,7 +18,7 @@ func Success(ctx context.Context, w http.ResponseWriter, data interface{}, messa
 	}
 
 	if response.StatusCode == 0 {
-		response.StatusCode = http.StatusInternalServerError
+		response.StatusCode = http.StatusOK
 	}
 
 	w.Header().Set("Content-Type", "application/json")
