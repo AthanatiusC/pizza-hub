@@ -33,3 +33,8 @@ No dependencies mean:
 - No build tools
 - No testing library
 - No database
+
+Run the program by executing the following command:
+```
+go run cmd/main.go
+```
